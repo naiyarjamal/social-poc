@@ -1,0 +1,127 @@
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          title: 'Social Support Application',
+          step1: 'Personal Information',
+          step2: 'Family & Financial Info',
+          step3: 'Situation Descriptions',
+          next: 'Next',
+          previous: 'Previous',
+          submit: 'Submit',
+          helpMeWrite: 'Help Me Write',
+          accept: 'Accept',
+          edit: 'Edit',
+          discard: 'Discard',
+          name: 'Full Name',
+          nationalId: 'National ID',
+          dob: 'Date of Birth',
+          gender: 'Gender',
+          address: 'Address',
+          city: 'City',
+          state: 'State',
+          country: 'Country',
+          phone: 'Phone',
+          email: 'Email',
+          maritalStatus: 'Marital Status',
+          dependents: 'Number of Dependents',
+          employmentStatus: 'Employment Status',
+          monthlyIncome: 'Monthly Income',
+          housingStatus: 'Housing Status',
+          financialSituation: 'Current Financial Situation',
+          employmentCircumstances: 'Employment Circumstances',
+          reasonForApplying: 'Reason for Applying',
+          required: 'This field is required',
+          invalidEmail: 'Invalid email address',
+          invalidPhone: 'Invalid phone number',
+          male: 'Male',
+          female: 'Female',
+          other: 'Other',
+          single: 'Single',
+          married: 'Married',
+          divorced: 'Divorced',
+          widowed: 'Widowed',
+          employed: 'Employed',
+          unemployed: 'Unemployed',
+          selfEmployed: 'Self-Employed',
+          retired: 'Retired',
+          owned: 'Owned',
+          rented: 'Rented',
+          otherHousing: 'Other',
+          apiError: 'Failed to fetch suggestion. Please try again.',
+          submitSuccess: 'Form submitted successfully!',
+          submitError: 'Failed to submit form. Please try again.',
+          english: 'English',
+          arabic: 'العربية'
+        }
+      },
+      ar: {
+        translation: {
+          title: 'تطبيق الدعم الاجتماعي',
+          step1: 'المعلومات الشخصية',
+          step2: 'معلومات الأسرة والمالية',
+          step3: 'وصف الحالة',
+          next: 'التالي',
+          previous: 'السابق',
+          submit: 'إرسال',
+          helpMeWrite: 'ساعدني في الكتابة',
+          accept: 'قبول',
+          edit: 'تعديل',
+          discard: 'تجاهل',
+          name: 'الاسم الكامل',
+          nationalId: 'رقم الهوية الوطنية',
+          dob: 'تاريخ الميلاد',
+          gender: 'الجنس',
+          address: 'العنوان',
+          city: 'المدينة',
+          state: 'الولاية',
+          country: 'الدولة',
+          phone: 'الهاتف',
+          email: 'البريد الإلكتروني',
+          maritalStatus: 'الحالة الزوجية',
+          dependents: 'عدد المعالين',
+          employmentStatus: 'حالة التوظيف',
+          monthlyIncome: 'الدخل الشهري',
+          housingStatus: 'حالة السكن',
+          financialSituation: 'الوضع المالي الحالي',
+          employmentCircumstances: 'ظروف التوظيف',
+          reasonForApplying: 'سبب التقديم',
+          required: 'هذا الحقل مطلوب',
+          invalidEmail: 'عنوان بريد إلكتروني غير صالح',
+          invalidPhone: 'رقم هاتف غير صالح',
+          male: 'ذكر',
+          female: 'أنثى',
+          other: 'أخرى',
+          single: 'أعزب',
+          married: 'متزوج',
+          divorced: 'مطلق',
+          widowed: 'أرمل',
+          employed: 'موظف',
+          unemployed: 'عاطل عن العمل',
+          selfEmployed: 'يعمل لحسابه الخاص',
+          retired: 'متقاعد',
+          owned: 'مملوك',
+          rented: 'مستأجر',
+          otherHousing: 'أخرى',
+          apiError: 'فشل في جلب الاقتراح. حاول مرة أخرى.',
+          submitSuccess: 'تم إرسال النموذج بنجاح!',
+          submitError: 'فشل في إرسال النموذج. حاول مرة أخرى.',
+          english: 'الإنجليزية',
+          arabic: 'العربية'
+        }
+      }
+    },
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  })
+
+export default i18n
