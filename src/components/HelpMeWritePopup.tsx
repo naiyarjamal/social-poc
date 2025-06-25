@@ -13,7 +13,7 @@ const HelpMeWritePopup: React.FC<HelpMeWritePopupProps> = ({ field, suggestion, 
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" role="dialog" aria-modal="true">
-      <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+      <div className=" bg-gray-400 p-6 rounded-lg max-w-lg w-full">
         <h3 className="text-lg font-semibold mb-4">{t('helpMeWrite')}</h3>
         <p className="mb-4">{suggestion}</p>
         <div className="flex justify-end gap-4">

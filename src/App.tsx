@@ -61,7 +61,7 @@ const App: React.FC = () => {
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
-          model: "gpt-3.5-turbo-instruct-0914",
+         model: "gpt-3.5-turbo",
           messages: [
             { role: "user", content: `Help me describe my ${field}.` },
           ],
