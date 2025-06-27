@@ -31,7 +31,7 @@ const Step3: React.FC<Step3Props> = ({
           <button
             type="button"
             onClick={() => handleHelpMeWrite("financialSituation")}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
           >
             {t("helpMeWrite")}
           </button>
@@ -58,7 +58,7 @@ const Step3: React.FC<Step3Props> = ({
           <button
             type="button"
             onClick={() => handleHelpMeWrite("employmentCircumstances")}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
           >
             {t("helpMeWrite")}
           </button>
@@ -83,7 +83,7 @@ const Step3: React.FC<Step3Props> = ({
           <button
             type="button"
             onClick={() => handleHelpMeWrite("reasonForApplying")}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
           >
             {t("helpMeWrite")}
           </button>

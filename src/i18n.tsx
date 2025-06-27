@@ -113,7 +113,7 @@ i18n
           apiError: 'فشل في جلب الاقتراح. حاول مرة أخرى.',
           submitSuccess: 'تم إرسال النموذج بنجاح!',
           submitError: 'فشل في إرسال النموذج. حاول مرة أخرى.',
-          english: 'الإنجليزية',
+          english: 'English',
           arabic: 'العربية'
         }
       }

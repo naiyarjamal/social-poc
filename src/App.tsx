@@ -61,7 +61,7 @@ const App: React.FC = () => {
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
-         model: "gpt-3.5-turbo",
+          model: "gpt-3.5-turbo",
           messages: [
             { role: "user", content: `Help me describe my ${field}.` },
           ],
@@ -80,17 +80,28 @@ const App: React.FC = () => {
       setActiveField(field);
     } catch (error: any) {
       console.error("OpenAI API error:", error);
-      
+
       if (error.response?.status === 429) {
-        alert(t("rateLimitError") || "Too many requests. Please wait a moment and try again.");
+        alert(
+          t("rateLimitError") ||
+            "Too many requests. Please wait a moment and try again."
+        );
       } else if (error.response?.status === 401) {
-        alert(t("authError") || "Invalid API key. Please check your OpenAI API key.");
+        alert(
+          t("authError") || "Invalid API key. Please check your OpenAI API key."
+        );
       } else if (error.response?.status === 403) {
-        alert(t("quotaError") || "API quota exceeded. Please check your OpenAI account.");
-      } else if (error.code === 'ECONNABORTED') {
+        alert(
+          t("quotaError") ||
+            "API quota exceeded. Please check your OpenAI account."
+        );
+      } else if (error.code === "ECONNABORTED") {
         alert(t("timeoutError") || "Request timed out. Please try again.");
       } else {
-        alert(t("apiError") || "An error occurred while generating suggestions. Please try again.");
+        alert(
+          t("apiError") ||
+            "An error occurred while generating suggestions. Please try again."
+        );
       }
     }
   };
@@ -123,13 +134,13 @@ const App: React.FC = () => {
         <div>
           <button
             onClick={() => changeLanguage("en")}
-            className="px-2 py-1 bg-gray-200 rounded mr-2"
+            className="px-2 py-1 bg-gray-200 rounded mr-2 cursor-pointer"
           >
             {t("english")}
           </button>
           <button
             onClick={() => changeLanguage("ar")}
-            className="px-2 py-1 bg-gray-200"
+            className="px-2 py-1 bg-gray-200 mr-2 cursor-pointer"
           >
             {t("arabic")}
           </button>
@@ -151,14 +162,14 @@ const App: React.FC = () => {
             <button
               type="button"
               onClick={() => setStep(step - 1)}
-              className="bg-gray-200 px-4 py-2 rounded"
+              className="bg-gray-200 px-4 py-2 rounded cursor-pointer"
             >
               {t("previous")}
             </button>
           )}
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
           >
             {step === 3 ? t("submit") : t("next")}
           </button>
