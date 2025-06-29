@@ -1,4 +1,115 @@
 @import "tailwindcss";
+
 body {
-    background-color: lightgray;
-  }
+  background-color: lightgray;
+}
+
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] * {
+  box-sizing: border-box;
+}
+
+[dir="rtl"] .MuiOutlinedInput-root {
+  text-align: right;
+}
+
+[dir="rtl"] .MuiOutlinedInput-notchedOutline {
+  text-align: right;
+}
+
+[dir="rtl"] .MuiInputLabel-root {
+  transform-origin: top right;
+  left: auto;
+  right: 14px;
+}
+
+[dir="rtl"] .MuiInputLabel-shrink {
+  transform: translate(0, -9px) scale(0.75);
+  transform-origin: top right;
+}
+
+[dir="rtl"] .MuiInputAdornment-positionStart {
+  margin-left: 8px;
+  margin-right: -14px;
+}
+
+[dir="rtl"] .MuiFormHelperText-root {
+  text-align: right;
+}
+
+
+[dir="rtl"] .MuiButtonGroup-root .MuiButton-root:first-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+[dir="rtl"] .MuiButtonGroup-root .MuiButton-root:last-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Fix stepper RTL issues */
+[dir="rtl"] .MuiStepConnector-root {
+  left: auto;
+  right: calc(-50% + 20px);
+}
+
+[dir="rtl"] .MuiStepLabel-labelContainer {
+  text-align: right;
+}
+
+[dir="rtl"] .MuiButton-startIcon {
+  margin-left: 8px;
+  margin-right: -4px;
+}
+
+[dir="rtl"] .MuiButton-endIcon {
+  margin-left: -4px;
+  margin-right: 8px;
+}
+
+
+[dir="rtl"] .MuiChip-root {
+  direction: rtl;
+}
+
+[dir="rtl"] .MuiChip-icon {
+  margin-left: 5px;
+  margin-right: -6px;
+}
+
+
+[dir="rtl"] .MuiPaper-root {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 
+              0px 1px 1px 0px rgba(0,0,0,0.14), 
+              0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+
+* {
+  transition: text-align 0.3s ease, transform 0.3s ease, margin 0.3s ease;
+}
+
+
+[dir="rtl"] .MuiContainer-root {
+  direction: rtl;
+}
+
+
+[dir="rtl"] .MuiTypography-root {
+  text-align: right;
+}
+
+
+[dir="rtl"] .MuiTypography-h4,
+[dir="rtl"] .MuiTypography-h6 {
+  text-align: right;
+}

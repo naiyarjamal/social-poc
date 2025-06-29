@@ -2,11 +2,31 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  ButtonGroup,
+  Paper,
+  Stack,
+  Fade,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
+import {
+  NavigateBefore,
+  NavigateNext,
+  Send,
+  DarkMode,
+  LightMode,
+} from "@mui/icons-material";
 import ProgressBar from "./components/ProgressBar";
 import HelpMeWritePopup from "./components/HelpMeWritePopup";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
+import { useThemeMode } from "./theme";
 import "./App.css";
 
 export interface FormData {
@@ -32,6 +52,7 @@ export interface FormData {
 
 const App: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { isDarkMode, toggleDarkMode } = useThemeMode();
   const [step, setStep] = useState(1);
   const [suggestion, setSuggestion] = useState<string | null>(null);
   const [activeField, setActiveField] = useState<string | null>(null);
@@ -41,6 +62,7 @@ const App: React.FC = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
   } = useForm<FormData>({
     defaultValues: JSON.parse(localStorage.getItem("formData") || "{}"),
   });
@@ -128,53 +150,196 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <div className="flex justify-between mb-4">
-        <h1 className="title text-2xl font-bold">{t("title")}</h1>
-        <div>
-          <button
-            onClick={() => changeLanguage("en")}
-            className="px-2 py-1 bg-gray-200 rounded mr-2 cursor-pointer"
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "background.default",
+        py: 4,
+      }}
+    >
+      {/* Header */}
+      <Container maxWidth="lg">
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            mb: 4,
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)",
+            color: "white",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 2,
+            }}
           >
-            {t("english")}
-          </button>
-          <button
-            onClick={() => changeLanguage("ar")}
-            className="px-2 py-1 bg-gray-200 mr-2 cursor-pointer"
-          >
-            {t("arabic")}
-          </button>
-        </div>
-      </div>
-      <ProgressBar step={step} />
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {step === 1 && <Step1 register={register} errors={errors} />}
-        {step === 2 && <Step2 register={register} errors={errors} />}
-        {step === 3 && (
-          <Step3
-            register={register}
-            errors={errors}
-            handleHelpMeWrite={handleHelpMeWrite}
-          />
-        )}
-        <div className="flex justify-between mt-6">
-          {step > 1 && (
-            <button
-              type="button"
-              onClick={() => setStep(step - 1)}
-              className="bg-gray-200 px-4 py-2 rounded cursor-pointer"
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: 600, textShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
             >
-              {t("previous")}
-            </button>
-          )}
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
-          >
-            {step === 3 ? t("submit") : t("next")}
-          </button>
-        </div>
-      </form>
+              {t("title")}
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              {/* Dark Mode Toggle */}
+              <Tooltip
+                title={
+                  isDarkMode
+                    ? t("lightMode") || "Light Mode"
+                    : t("darkMode") || "Dark Mode"
+                }
+              >
+                <IconButton
+                  onClick={toggleDarkMode}
+                  sx={{
+                    color: "white",
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    "&:hover": {
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                    },
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {isDarkMode ? <LightMode /> : <DarkMode />}
+                </IconButton>
+              </Tooltip>
+
+              <ButtonGroup
+                variant="outlined"
+                size="small"
+                sx={{
+                  "& .MuiButton-root": {
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    "&:not(:last-of-type)": {
+                      borderRight: "1px solid rgba(255,255,255,0.3)",
+                    },
+                  },
+                  // RTL specific fixes
+                  "[dir='rtl'] &": {
+                    "& .MuiButton-root:not(:last-of-type)": {
+                      borderRight: "none",
+                      borderLeft: "1px solid rgba(255,255,255,0.3)",
+                    },
+                  },
+                }}
+              >
+                <Button
+                  onClick={() => changeLanguage("en")}
+                  sx={{
+                    backgroundColor: "rgba(255,255,255,0.2)",
+                    "&:hover": { backgroundColor: "rgba(255,255,255,0.3)" },
+                    color: "white",
+                  }}
+                >
+                  {t("english")}
+                </Button>
+                <Button
+                  onClick={() => changeLanguage("ar")}
+                  sx={{
+                    backgroundColor: "rgba(255,255,255,0.2)",
+                    "&:hover": { backgroundColor: "rgba(255,255,255,0.3)" },
+                    color: "white",
+                  }}
+                >
+                  {t("arabic")}
+                </Button>
+              </ButtonGroup>
+            </Box>
+          </Box>
+        </Paper>
+
+        {/* Progress Bar */}
+        <ProgressBar step={step} />
+
+        {/* Main Form */}
+        <Fade in={true} timeout={500}>
+          <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={4}>
+              {step === 1 && (
+                <Step1 register={register} errors={errors} control={control} />
+              )}
+              {step === 2 && (
+                <Step2 register={register} errors={errors} control={control} />
+              )}
+              {step === 3 && (
+                <Step3
+                  register={register}
+                  errors={errors}
+                  handleHelpMeWrite={handleHelpMeWrite}
+                />
+              )}
+
+              {/* Navigation Buttons */}
+              <Paper elevation={0} sx={{ p: 3, borderRadius: 3 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  {step > 1 ? (
+                    <Button
+                      type="button"
+                      onClick={() => setStep(step - 1)}
+                      startIcon={<NavigateBefore />}
+                      variant="outlined"
+                      size="large"
+                      sx={{
+                        borderRadius: 2,
+                        px: 3,
+                        py: 1.5,
+                        textTransform: "none",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {t("previous")}
+                    </Button>
+                  ) : (
+                    <Box />
+                  )}
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    endIcon={step === 3 ? <Send /> : <NavigateNext />}
+                    sx={{
+                      borderRadius: 2,
+                      px: 4,
+                      py: 1.5,
+                      textTransform: "none",
+                      fontWeight: 500,
+                      fontSize: "1rem",
+                      background:
+                        step === 3
+                          ? "linear-gradient(45deg, #4caf50 30%, #66bb6a 90%)"
+                          : "linear-gradient(45deg, #1976d2 30%, #42a5f5 90%)",
+                      "&:hover": {
+                        background:
+                          step === 3
+                            ? "linear-gradient(45deg, #388e3c 30%, #4caf50 90%)"
+                            : "linear-gradient(45deg, #1565c0 30%, #1976d2 90%)",
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 8px 25px rgba(25, 118, 210, 0.3)",
+                      },
+                      transition: "all 0.3s ease-in-out",
+                    }}
+                  >
+                    {step === 3 ? t("submit") : t("next")}
+                  </Button>
+                </Box>
+              </Paper>
+            </Stack>
+          </Box>
+        </Fade>
+      </Container>
+
+      {/* AI Popup */}
       {suggestion && activeField && (
         <HelpMeWritePopup
           field={activeField}
@@ -195,7 +360,7 @@ const App: React.FC = () => {
           }}
         />
       )}
-    </div>
+    </Box>
   );
 };
 
