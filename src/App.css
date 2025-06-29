@@ -34,7 +34,19 @@ body {
 
 [dir="rtl"] .MuiInputAdornment-positionStart {
   margin-left: 8px;
-  margin-right: -14px;
+  margin-right: 0px;
+  order: 2;
+}
+
+[dir="rtl"] .MuiOutlinedInput-input {
+  padding-right: 14px;
+  text-align: right;
+}
+
+[dir="rtl"] .MuiInputAdornment-positionEnd {
+  margin-left: 0px;
+  margin-right: 8px;
+  order: -1;
 }
 
 [dir="rtl"] .MuiFormHelperText-root {
